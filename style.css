@@ -1,13 +1,40 @@
-h1{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+body {
+    margin: 0;
+    padding: 0;
 }
+div {
+    box-sizing: border-box;
+}
+.menu-bar{
+    width: 100%;
+    float: left;
+    background-color: black;
+}
+
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu-bar ul li{
+    float: left;
+}
+.menu-bar ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
 .box {
     margin: 10px;
     width: 300px;
     height: 200px;
-    background-color: hotpink;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    float: left;
     border: 1px solid black;
     display: flex;
     justify-content: center;
