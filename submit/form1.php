@@ -1,5 +1,6 @@
 <?php
 $cn = new mysqli("localhost", "root", "", "review-php");
+$alert = "";
 // Insert Data
 if (isset($_POST['submit'])) {
     // check name duplicate
