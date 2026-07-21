@@ -10,8 +10,11 @@ body {
 
 .form-page {
     width: 100%;
-    max-width: 500px;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .modern-form {
@@ -20,6 +23,7 @@ body {
     padding: 32px;
     box-shadow: 0 22px 60px rgba(15, 23, 42, 0.12);
     border: 1px solid rgba(148, 163, 184, 0.2);
+    min-width: 500px;
 }
 
 .modern-form h1 {
@@ -82,4 +86,51 @@ body {
 
 .submit-button:active {
     transform: translateY(0);
+}
+
+.form-page table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 28px;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.form-page th,
+.form-page td {
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 0.96rem;
+    color: #1f2937;
+}
+
+.form-page th {
+    background: linear-gradient(90deg, #eef2ff 0%, #ebf4ff 100%);
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.form-page tr:not(:first-child) td {
+    border-top: 1px solid #e2e8f0;
+}
+
+.form-page tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* .form-page tr:last-child td {
+    border-top: 2px solid #cbd5e1;
+} */
+
+.form-page td[colspan="3"] {
+    color: #475569;
+    font-weight: 700;
+    text-align: center;
+}
+
+table tr:nth-child(2) td {
+  font-weight: 700;
 }
