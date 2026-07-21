@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 100%);
+    color: #1f2937;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+h1 {
+    margin-bottom: 16px;
+    font-size: 2rem;
+    color: #1e3a8a;
+}
+
+.frm {
+    width: min(100%, 560px);
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    border: 1px solid #e5e7eb;
+}
+
+.upl {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.upl label {
+    font-weight: 600;
+    color: #334155;
+}
+
+.upl input,
+.upl textarea,
+.upl select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dbe4f0;
+    border-radius: 12px;
+    font-size: 15px;
+    background: #f8fbff;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-sizing: border-box;
+}
+
+.upl input:focus,
+.upl textarea:focus,
+.upl select:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+    transform: translateY(-1px);
+}
+
+.upl textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.submit-btn {
+    margin-top: 8px;
+    width: fit-content;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-self: flex-end;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(79, 70, 229, 0.26);
+}
+
+@media (max-width: 600px) {
+    .frm {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+}
