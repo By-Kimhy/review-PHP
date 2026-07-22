@@ -1,3 +1,12 @@
+<?php
+$cn = new mysqli("localhost", "root", "", "review-php");
+//get auto id
+$sql = "SELECT MAX(id) FROM tbl_city";
+$result = $cn->query($sql);
+$row = $result->fetch_array();
+$autoId = $row[0] + 1;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +24,7 @@
     <div class="frm">
         <form class="upl">
             <label for="">ID</label>
-            <input type="text" name="txt-id" id="txt-id">
+            <input type="text" name="txt-id" id="txt-id" value="<?php echo $autoId; ?>" readonly>
             <label for="">City Name</label>
             <input type="text" name="txt-name" id="txt-name">
             <label for="">Description</label>
@@ -40,8 +49,10 @@
         $(".submit-btn").click(function() {
             var eThis = $(this);
             var Parent = eThis.closest("form.upl");
+            var idInput = Parent.find('#txt-id');
             var nameInput = Parent.find('#txt-name');
             var desInput = Parent.find('#txt-des');
+            var fileInput = Parent.find('#txt-file');
             var name = nameInput.val();
             var des = desInput.val();
 
@@ -66,17 +77,34 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                // dataType: "json",
+                dataType: "json",
                 beforeSend: function() {
                     // work before success
                 },
                 success: function(data) {
-
-                    Swal.fire({
-                        title: "Success!",
-                        text: "City added successfully",
-                        icon: "success"
-                    });
+                    if(data.dpl==true){
+                        Swal.fire({
+                            title: "City Name Already Exist",
+                            text: "Please Enter Unique Name",
+                            icon: "error"
+                        }).then(() => {
+                            nameInput.val("");
+                            nameInput.focus();
+                            return;
+                        })
+                    }else{
+                        Swal.fire({
+                            title: "Success!",
+                            text: "City added successfully",
+                            icon: "success",
+                        }).then(() => {
+                            nameInput.val("");
+                            desInput.val("");
+                            fileInput.val("");
+                            nameInput.focus();
+                            idInput.val(data.id+1);
+                        })
+                    }
                 }
             });
         });
