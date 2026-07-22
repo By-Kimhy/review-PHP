@@ -35,7 +35,9 @@ $autoId = $row[0] + 1;
                 <option value="0">Inactive</option>
             </select>
             <label for="">Photo</label>
-            <input type="file" name="txt-file" id="txt-file">
+            <div class="img-box">
+                <input type="file" name="txt-file" id="txt-file" class="txt-file">
+            </div>
             <a class="submit-btn">
                 Post
             </a>
@@ -118,6 +120,26 @@ $autoId = $row[0] + 1;
                         text: "Check browser console and server response.",
                         icon: "error"
                     });
+                }
+            });
+        });
+
+        $(".txt-file").change(function() {
+            var eThis = $(this);
+            var Parent = eThis.closest('.frm');
+            var imgBox = Parent.find('.img-box');
+            var frm = eThis.closest("form.upl");
+            var frm_data = new FormData(frm[0]);
+            $.ajax({
+                url: "upl-img.php",
+                type: "POST",
+                data: frm_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "json",
+                success: function(data) {
+                    imgBox.css({'background-image': 'url(../img/'+data.imgName+')'});
                 }
             });
         });
