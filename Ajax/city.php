@@ -37,6 +37,7 @@ $autoId = $row[0] + 1;
             <label for="">Photo</label>
             <div class="img-box">
                 <input type="file" name="txt-file" id="txt-file" class="txt-file">
+                <input type="text" name="txt-img-name" id="txt-img-name">
             </div>
             <a class="submit-btn">
                 Post
@@ -48,6 +49,7 @@ $autoId = $row[0] + 1;
 
 <script>
     $(document).ready(function() {
+        var loading = "<div class='loading'></div>";
         $(".submit-btn").click(function() {
             var eThis = $(this);
             var Parent = eThis.closest("form.upl");
@@ -55,6 +57,8 @@ $autoId = $row[0] + 1;
             var nameInput = Parent.find('#txt-name');
             var desInput = Parent.find('#txt-des');
             var fileInput = Parent.find('#txt-file');
+            var imgBox = Parent.find('.img-box');
+            var photo = Parent.find('#txt-img-name');
             var name = nameInput.val();
             var des = desInput.val();
 
@@ -108,8 +112,13 @@ $autoId = $row[0] + 1;
                             nameInput.val("");
                             desInput.val("");
                             fileInput.val("");
-                            nameInput.focus();
+                            // reset preview box back to default
+                            imgBox.css({
+                                'background-image': 'url(../img/bg-img.png)'
+                            });
+                            photo.val("");
                             idInput.val(data.id + 1);
+                            nameInput.focus();
                         });
                     }
                 },
@@ -128,6 +137,7 @@ $autoId = $row[0] + 1;
             var eThis = $(this);
             var Parent = eThis.closest('.frm');
             var imgBox = Parent.find('.img-box');
+            var photo = Parent.find('#txt-img-name');
             var frm = eThis.closest("form.upl");
             var frm_data = new FormData(frm[0]);
             $.ajax({
@@ -138,8 +148,17 @@ $autoId = $row[0] + 1;
                 cache: false,
                 processData: false,
                 dataType: "json",
+                beforeSend: function() {
+                    // imgBox.html(loading);
+                    imgBox.append(loading);
+                },
                 success: function(data) {
-                    imgBox.css({'background-image': 'url(../img/'+data.imgName+')'});
+                    imgBox.css({
+                        'background-image': 'url(../img/' + data.imgName + ')'
+                    });
+                    // imgBox.html("");
+                    imgBox.find(".loading").remove();
+                    photo.val(data.imgName);
                 }
             });
         });
