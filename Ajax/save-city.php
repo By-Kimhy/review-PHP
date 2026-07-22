@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
     $msg['dpl'] = true;
 } else {
     $msg['dpl'] = false;
-    $name = $_POST['txt-name'];
+    $name = trim($_POST['txt-name']);
     $des = $_POST['txt-des'];
     $img = "123.jpg";
     $status = $_POST['txt-status'];
