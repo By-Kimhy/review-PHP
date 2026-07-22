@@ -78,21 +78,26 @@ $autoId = $row[0] + 1;
                 cache: false,
                 processData: false,
                 dataType: "json",
-                beforeSend: function() {
-                    // work before success
-                },
                 success: function(data) {
-                    if(data.dpl==true){
+                    if (data.error) {
                         Swal.fire({
-                            title: "City Name Already Exist",
-                            text: "Please Enter Unique Name",
+                            title: "Error",
+                            text: data.error,
+                            icon: "error"
+                        });
+                        return;
+                    }
+
+                    if (data.dpl === true) {
+                        Swal.fire({
+                            title: "City Name Already Exists",
+                            text: "Please enter a unique name.",
                             icon: "error"
                         }).then(() => {
                             nameInput.val("");
                             nameInput.focus();
-                            return;
-                        })
-                    }else{
+                        });
+                    } else {
                         Swal.fire({
                             title: "Success!",
                             text: "City added successfully",
@@ -102,9 +107,17 @@ $autoId = $row[0] + 1;
                             desInput.val("");
                             fileInput.val("");
                             nameInput.focus();
-                            idInput.val(data.id+1);
-                        })
+                            idInput.val(data.id + 1);
+                        });
                     }
+                },
+                error: function(xhr, status, err) {
+                    console.error("Ajax error:", status, err, xhr.responseText);
+                    Swal.fire({
+                        title: "Request failed",
+                        text: "Check browser console and server response.",
+                        icon: "error"
+                    });
                 }
             });
         });

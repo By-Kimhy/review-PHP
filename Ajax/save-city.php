@@ -1,25 +1,28 @@
 <?php
 $cn = new mysqli("localhost", "root", "", "review-php");
-// $sql="INSERT INTO tbl_city values(null,'Phnom Penh','Phnom Penh Des','123.img','1');";
-// $cn->query($sql);
+
+$name = $cn->real_escape_string(trim($_POST['txt-name']));
+$des=trim($_POST['txt-des']);
+$des = str_replace("\n", "<br>", $des);
+$des= $cn->real_escape_string($des);
+$img = "123.jpg";
+$status = $_POST['txt-status'];
 
 // check name duplicate
-$sql = "SELECT * FROM `review-php`.`tbl_city` WHERE `name_city`='" . $_POST['txt-name'] . "'";
+$sql = 'SELECT * FROM tbl_city WHERE name_city="' . $_POST['txt-name'] . '"';
 $result = $cn->query($sql);
 if ($result->num_rows > 0) {
     $msg['dpl'] = true;
 } else {
     $msg['dpl'] = false;
-    $name = trim($_POST['txt-name']);
-    $des = $_POST['txt-des'];
-    $img = "123.jpg";
-    $status = $_POST['txt-status'];
+
 
     $sql = "INSERT INTO tbl_city values(null,'$name','$des','$img','$status')";
     $cn->query($sql);
     $last_id = $cn->insert_id;
     $msg['id'] = $last_id;
 }
+header('Content-Type: application/json');
 echo json_encode($msg);
 
 // header('Content-Type: application/json');
