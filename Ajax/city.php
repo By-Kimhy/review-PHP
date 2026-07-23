@@ -54,6 +54,7 @@ $autoId = $row[0] + 1;
                         <th>Description</th>
                         <th>Photo</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +74,10 @@ $autoId = $row[0] + 1;
                                     <img src="../img/<?php echo $row[3]; ?>" alt="<?php echo $row[3]; ?>" style="width: 100px; height: 100px;">
                                 </td>
                                 <td><?php echo $row[4]; ?></td>
+                                <td>
+                                    <input type="button" class="action-btn edit-btn" value="Edit" onclick="editCity(<?php echo $row[0]; ?>)">
+                                    <input type="button" class="action-btn delete-btn" value="Delete" onclick="deleteCity(<?php echo $row[0]; ?>)">
+                                </td>
                             </tr>
                         <?php
                         }
@@ -186,6 +191,10 @@ $autoId = $row[0] + 1;
                                             <td>${des}</td>
                                             <td><img src="../img/${photo.val()}" style="width:100px;height:100px;"></td>
                                             <td>${status}</td>
+                                            <td>
+                                                <input type="button" class="action-btn edit-btn" value="Edit" onclick="editCity(${data.id})">
+                                                <input type="button" class="action-btn delete-btn" value="Delete" onclick="deleteCity(${data.id})">
+                                            </td>
                                         </tr>`;
                             tbl.find("tr:eq(0)").after(tr);
 
