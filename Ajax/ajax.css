@@ -1,124 +1,237 @@
-body {
-    margin: 0;
+:root {
+    color-scheme: light;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 100%);
-    color: #1f2937;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0f172a;
+    background-color: #f8fbff;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.14) 0%, transparent 32%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12) 0%, transparent 28%),
+        linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+    display: flex;
+    justify-content: center;
+    padding: 32px 18px;
+}
+
+/* body > * {
+    width: min(100%, 1100px);
+} */
+
 h1 {
-    margin-bottom: 16px;
-    font-size: 2rem;
+    margin: 0 0 20px;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    letter-spacing: -0.04em;
     color: #1e3a8a;
+    text-align: center;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .frm {
-    width: min(100%, 560px);
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 28px;
-    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-    border: 1px solid #e5e7eb;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 28px;
+    padding: 32px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(12px);
 }
 
 .upl {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+    align-items: start;
 }
 
 .upl label {
-    font-weight: 600;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: #334155;
+    margin-bottom: 8px;
 }
 
 .upl input,
 .upl textarea,
 .upl select {
     width: 100%;
-    padding: 12px 14px;
+    padding: 14px 16px;
     border: 1px solid #dbe4f0;
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: 16px;
     background: #f8fbff;
     color: #0f172a;
+    font-size: 0.975rem;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .upl input:focus,
 .upl textarea:focus,
 .upl select:focus {
     border-color: #4f46e5;
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
 }
 
 .upl textarea {
-    min-height: 110px;
+    min-height: 140px;
     resize: vertical;
 }
 
-.submit-btn {
-    margin-top: 8px;
-    width: fit-content;
-    border: none;
-    border-radius: 999px;
-    padding: 12px 20px;
-    background: linear-gradient(135deg, #4f46e5, #2563eb);
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    align-self: flex-end;
+.upl > .full-width {
+    grid-column: 1 / -1;
 }
 
-.submit-btn:hover {
+.submit-btn {
+    grid-column: 1 / -1;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: none;
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    box-shadow: 0 18px 30px rgba(59, 130, 246, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    text-decoration: none;
+}
+
+.submit-btn:hover,
+.submit-btn:focus-visible {
     transform: translateY(-2px);
-    box-shadow: 0 14px 24px rgba(79, 70, 229, 0.26);
+    box-shadow: 0 22px 36px rgba(59, 130, 246, 0.26);
 }
 
 .img-box {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    float: left;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 150px;
+    height:150px;
+    border-radius: 22px;
+    border: 1px solid #dbe4f0;
+    background: #f8fbff;
     background-image: url("../img/bg-img.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    overflow: hidden;
 }
-.img-box input{
-    width: 100%;
-    height: 100%;
-    float: left;
+
+.img-box input[type="file"] {
+    position: absolute;
+    inset: 0;
     opacity: 0;
     cursor: pointer;
 }
 
-.loading {
+.img-box input[type="text"] {
     width: 100%;
-    height: 100%;
-    background: url("../img/loading.gif") no-repeat center;
-    background-size: cover;
+    margin-top: 12px;
+    opacity: 0;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+    color: #334155;
+}
+
+.loading {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.75) url("../img/loading.gif") no-repeat center;
+    background-size: 48px 48px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 28px;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+}
+
+thead {
+    background: #eef2ff;
+}
+
+th,
+td {
+    padding: 18px 16px;
+    text-align: left;
+    font-size: 0.96rem;
+    color: #334155;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eef2ff;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+tbody tr:hover {
+    background: rgba(79, 70, 229, 0.08);
+}
+
+@media (max-width: 900px) {
+    .upl {
+        grid-template-columns: 1fr;
+    }
+
+    .submit-btn {
+        justify-self: stretch;
+    }
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 22px 14px;
+    }
+
     .frm {
-        padding: 20px;
-        border-radius: 18px;
+        padding: 24px;
+        border-radius: 22px;
     }
 
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.9rem;
+    }
+
+    th,
+    td {
+        padding: 14px 12px;
     }
 }
